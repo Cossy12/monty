@@ -10,19 +10,19 @@ void _activate_rtl(li_stck **doubly, unsigned int cline)
 	if (*doubly == NULL)
 		return;
 
-	if ((*doubly)->nw_nt == NULL)
+	if ((*doubly)->next == NULL)
 		return;
 
-	val_ax_f = (*doubly)->nw_nt;
+	val_ax_f = (*doubly)->next;
 	val_ax_t = *doubly;
 
-	for (; val_ax_t->nw_nt != NULL; val_ax_t = val_ax_t->nw_nt)
+	for (; val_ax_t->next != NULL; val_ax_t = val_ax_t->next)
 		;
 
-	val_ax_f->init_al = NULL;
-	val_ax_t->nw_nt = *doubly;
-	(*doubly)->nw_nt = NULL;
-	(*doubly)->init_al = val_ax_t;
+	val_ax_f->prev = NULL;
+	val_ax_t->next = *doubly;
+	(*doubly)->next = NULL;
+	(*doubly)->prev = val_ax_t;
 	*doubly = val_ax_f;
 }
 
@@ -35,18 +35,18 @@ void _activate_rtlrl(li_stck **doubly, unsigned int cline)
 	if (*doubly == NULL)
 		return;
 
-	if ((*doubly)->nw_nt == NULL)
+	if ((*doubly)->next == NULL)
 		return;
 
 	val_ax = *doubly;
 
-	for (; val_ax->nw_nt != NULL; val_ax = val_ax->nw_nt)
+	for (; val_ax->next != NULL; val_ax = val_ax->next)
 		;
 
-	val_ax->init_al->nw_nt = NULL;
-	val_ax->nw_nt = *doubly;
-	val_ax->init_al = NULL;
-	(*doubly)->init_al = val_ax;
+	val_ax->prev->next = NULL;
+	val_ax->next = *doubly;
+	val_ax->prev = NULL;
+	(*doubly)->prev = val_ax;
 	*doubly = val_ax;
 }
 

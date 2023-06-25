@@ -3,7 +3,7 @@
 
 void (*fetch_code(char *opc))(li_stck **stack, unsigned int line_number)
 {
-	follow_aft instruct[] = {
+	instruction_t instruct[] = {
 		{"push", _activate_psh},
 		{"pall", _activate_pal},
 		{"pint", _activate_pnt},
@@ -25,9 +25,9 @@ void (*fetch_code(char *opc))(li_stck **stack, unsigned int line_number)
 	};
 	int i;
 
-	for (i = 0; instruct[i].vai_op_cd; i++)
+	for (i = 0; instruct[i].opcode; i++)
 	{
-		if (_stamprc(instruct[i].vai_op_cd, opc) == 0)
+		if (_stamprc(instruct[i].opcode, opc) == 0)
 			break;
 	}
 

@@ -8,7 +8,7 @@ void _activate_add(li_stck **doubly, unsigned int cline)
 
 	val_ax = *doubly;
 
-	for (; val_ax != NULL; val_ax = val_ax->nw_nt, m++)
+	for (; val_ax != NULL; val_ax = val_ax->next, m++)
 		;
 
 	if (m < 2)
@@ -18,7 +18,7 @@ void _activate_add(li_stck **doubly, unsigned int cline)
 		exit(EXIT_FAILURE);
 	}
 
-	val_ax = (*doubly)->nw_nt;
+	val_ax = (*doubly)->next;
 	val_ax->n += (*doubly)->n;
 	_activate_pp(doubly, cline);
 }
@@ -38,7 +38,7 @@ void _activate_sb(li_stck **head, unsigned int cline)
 
 	nw_val = *head;
 
-	for (; nw_val != NULL; nw_val = nw_val->nw_nt, m++)
+	for (; nw_val != NULL; nw_val = nw_val->next, m++)
 		;
 
 	if (m < 2)
@@ -48,7 +48,7 @@ void _activate_sb(li_stck **head, unsigned int cline)
 		exit(EXIT_FAILURE);
 	}
 
-	nw_val = (*head)->nw_nt;
+	nw_val = (*head)->next;
 	nw_val->n -= (*head)->n;
 	_activate_pp(head, cline);
 }
@@ -62,7 +62,7 @@ void _activate_dv(li_stck **doubly, unsigned int cline)
 
 	val_ax = *doubly;
 
-	for (; val_ax != NULL; val_ax = val_ax->nw_nt, m++)
+	for (; val_ax != NULL; val_ax = val_ax->next, m++)
 		;
 
 	if (m < 2)
@@ -79,7 +79,7 @@ void _activate_dv(li_stck **doubly, unsigned int cline)
 		exit(EXIT_FAILURE);
 	}
 
-	val_ax = (*doubly)->nw_nt;
+	val_ax = (*doubly)->next;
 	val_ax->n /= (*doubly)->n;
 	_activate_pp(doubly, cline);
 }
@@ -93,7 +93,7 @@ void _activate_ml(li_stck **head, unsigned int cline)
 
 	nw_val = *head;
 
-	for (; nw_val != NULL; nw_val = nw_val->nw_nt, m++)
+	for (; nw_val != NULL; nw_val = nw_val->next, m++)
 		;
 
 	if (m < 2)
@@ -103,7 +103,7 @@ void _activate_ml(li_stck **head, unsigned int cline)
 		exit(EXIT_FAILURE);
 	}
 
-	nw_val = (*head)->nw_nt;
+	nw_val = (*head)->next;
 	nw_val->n *= (*head)->n;
 	_activate_pp(head, cline);
 }

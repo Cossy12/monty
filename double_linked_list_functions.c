@@ -17,18 +17,18 @@ li_stck *node_add_que(li_stck **head, const int n)
 	all_val->n = n;
 	if (*head == NULL)
 	{
-		all_val->nw_nt = *head;
-		all_val->init_al = NULL;
+		all_val->next = *head;
+		all_val->prev = NULL;
 		*head = all_val;
 		return (*head);
 	}
 	alled_ace = *head;
-	while (alled_ace->nw_nt)
-		alled_ace = alled_ace->nw_nt;
-	all_val->nw_nt = alled_ace->nw_nt;
-	all_val->init_al = alled_ace;
-	alled_ace->nw_nt = all_val;
-	return (alled_ace->nw_nt);
+	while (alled_ace->next)
+		alled_ace = alled_ace->next;
+	all_val->next = alled_ace->next;
+	all_val->prev = alled_ace;
+	alled_ace->next = all_val;
+	return (alled_ace->next);
 }
 
 
@@ -48,14 +48,14 @@ li_stck *node_add_lifo_que(li_stck **head, const int n)
 	all_val->n = n;
 	if (*head == NULL)
 	{
-		all_val->nw_nt = *head;
-		all_val->init_al = NULL;
+		all_val->next = *head;
+		all_val->prev = NULL;
 		*head = all_val;
 		return (*head);
 	}
-	(*head)->init_al = all_val;
-	all_val->nw_nt = (*head);
-	all_val->init_al = NULL;
+	(*head)->prev = all_val;
+	all_val->next = (*head);
+	all_val->prev = NULL;
 	*head = all_val;
 	return (*head);
 }
@@ -67,7 +67,7 @@ void dixtinction_unique(li_stck *head)
 
 	while ((vtns = head) != NULL)
 	{
-		head = head->nw_nt;
+		head = head->next;
 		free(vtns);
 	}
 }

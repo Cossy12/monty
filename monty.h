@@ -12,11 +12,11 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct val_stack
+typedef struct stack_s
 {
 	int n;
-	struct val_stack *init_al;
-	struct val_stack *nw_nt;
+	struct stack_s *prev;
+	struct stack_s *next;
 } li_stck;
 
 
@@ -33,11 +33,11 @@ typedef struct all_globals
 
 
 
-typedef struct follow_f
+typedef struct instruction_s
 {
-	char *vai_op_cd;
+	char *opcode;
 	void (*f)(li_stck **stack, unsigned int line_number);
-} follow_aft;
+} instruction_t;
 
 extern all_gb vlgoed;
 

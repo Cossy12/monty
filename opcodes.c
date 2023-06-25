@@ -42,7 +42,7 @@ void _activate_pal(li_stck **doubly, unsigned int cline)
 	while (val_ax)
 	{
 		printf("%d\n", val_ax->n);
-		val_ax = val_ax->nw_nt;
+		val_ax = val_ax->next;
 	}
 }
 
@@ -75,7 +75,7 @@ void _activate_pp(li_stck **doubly, unsigned int cline)
 		exit(EXIT_FAILURE);
 	}
 	val_ax = *doubly;
-	*doubly = (*doubly)->nw_nt;
+	*doubly = (*doubly)->next;
 	free(val_ax);
 }
 
@@ -88,7 +88,7 @@ void _activate_swp(li_stck **doubly, unsigned int cline)
 
 	val_ax = *doubly;
 
-	for (; val_ax != NULL; val_ax = val_ax->nw_nt, m++)
+	for (; val_ax != NULL; val_ax = val_ax->next, m++)
 		;
 
 	if (m < 2)
@@ -99,10 +99,10 @@ void _activate_swp(li_stck **doubly, unsigned int cline)
 	}
 
 	val_ax = *doubly;
-	*doubly = (*doubly)->nw_nt;
-	val_ax->nw_nt = (*doubly)->nw_nt;
-	val_ax->init_al = *doubly;
-	(*doubly)->nw_nt = val_ax;
-	(*doubly)->init_al = NULL;
+	*doubly = (*doubly)->next;
+	val_ax->next = (*doubly)->next;
+	val_ax->prev = *doubly;
+	(*doubly)->next = val_ax;
+	(*doubly)->prev = NULL;
 }
 
